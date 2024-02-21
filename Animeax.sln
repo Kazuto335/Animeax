@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animeax", "Animeax.csproj", "{29F7EAE8-CF2F-4449-A0D3-E942355CF5B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29F7EAE8-CF2F-4449-A0D3-E942355CF5B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F7EAE8-CF2F-4449-A0D3-E942355CF5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F7EAE8-CF2F-4449-A0D3-E942355CF5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F7EAE8-CF2F-4449-A0D3-E942355CF5B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7018A53-ECB1-4D64-B84D-1DC1F3924860}
+	EndGlobalSection
+EndGlobal
