@@ -1,58 +1,75 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+ 
+@model List<AAnime>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-9 d-none d-md-block">
+        <div class="col-md-9">
             <!-- Content for 75% width container -->
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="image1.jpg" class="img-fluid" alt="Image 1">
-                            </div>
-                            <div class="col-4">
-                                <img src="image2.jpg" class="img-fluid" alt="Image 2">
-                            </div>
-                            <div class="col-4">
-                                <img src="image3.jpg" class="img-fluid" alt="Image 3">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="image4.jpg" class="img-fluid" alt="Image 4">
-                            </div>
-                            <div class="col-4">
-                                <img src="image5.jpg" class="img-fluid" alt="Image 5">
-                            </div>
-                            <div class="col-4">
-                                <img src="image6.jpg" class="img-fluid" alt="Image 6">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+           
         </div>
+
         <div class="col-md-3 d-none d-md-block">
             <!-- Content for 25% width container -->
-            <div class="container-fluid" style="background-color: #e0e0e0; height: 480px;">
-                <h2>News</h2>
-                <!-- Your content here -->
+            <div class="container-fluid" style="background-image: url('your-image.jpg'); background-size: cover; background-position: center; height: 240px;">
+                <div class="d-flex flex-column justify-content-between h-100" style="background-color: rgba(224, 224, 224, 0.8);">
+                    <h3>Recent Updates</h3>
+                    <!-- Your content here -->
+                    <div>
+                        <!-- This empty div will push the description to the bottom -->
+                    </div>
+                    <h2>Description</h2>
+                    <!-- Your description content here -->
+                </div>
+            </div>
+
+            <!-- Advertisement section -->
+            <div class="container-fluid mt-3" style="background-color: #f0f0f0; height: 240px;">
+                <h2>Advertisement</h2>
+                <!-- Your advertisement content here -->
             </div>
         </div>
     </div>
 </div>
 
-<hr>
 
+<hr class="d-none d-md-block">
+<div class="container">
+    <h3>Top Animes</h3>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+        @foreach (var obj in Model)
+        {
+            <div class="card-deck rounded rounded-3">
+                <div class="card position-relative">
+                    <a href="@Url.Action("Download", "Home", new { id = obj.ID })" class="text-decoration-none">
+                        <div style="position: relative;">
+                            <img src="@obj.ImgURL" class="card-img-top lazyload rounded rounded-3" alt="Anime Image">
+                            <div class="card-img-overlay rounded rounded-3"></div>
+                            
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@obj.Name <sup class="text-success">@obj.Type</sup> @obj.Rating</h5>
+                            <p class="card-text"><small class="text-success">@obj.OName</small></p>
+                            <p class="card-text"><strong>Genres:</strong> <small class="text-primary">@obj.Genres</small></p>
+                            <p class="card-text overflow-hidden d-none" style="max-height: 100px;">@obj.Description</p>
+                        </div>
+                        <div class="position-absolute top-0 start-0 mt-3 ms-3 d-flex align-items-center">
+                            <div class="text-warning me-1" style="font-size: 1.5rem;">
+                                <i class="bi bi-star-fill">
+                                    <div class="text-white" style="font-size: 1rem;">
+                                        @obj.Score <!-- Assuming Score is a property from the model -->
+                                    </div>
+                                </i> <!-- Assuming you're using Bootstrap Icons -->
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="text-center mt-4">
+        <a asp-action="All" class="btn btn-primary">See More</a>
+    </div>
+</div>

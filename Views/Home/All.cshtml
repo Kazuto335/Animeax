@@ -1,0 +1,82 @@
+﻿@model List<AAnime>
+
+
+<h1 class="m-5">All Anime</h1>
+
+<div class="container">
+
+    <!-- Buttons for filtering by genre -->
+    <div class="mb-3">
+        <a href="@Url.Action("All", "Home")" class="btn btn-dark">All</a>
+        <a href="@Url.Action("All", "Home", new { genre = "Action" })" class="btn btn-primary">Action</a>
+        <a href="@Url.Action("All", "Home", new { genre = "Drama" })" class="btn btn-Secondary border">Drama</a>
+        <a href="@Url.Action("All", "Home", new { genre = "Fantasy" })" class="btn btn-info">Fantasy</a>
+        <!-- Add more buttons for other genres as needed -->
+    </div>
+
+    
+    <div class="row">
+        <div class="row row-cols-2 row-cols-md-4 g-4">
+            @foreach (var obj in Model)
+            {
+                <div class="card-deck ">
+                    <div class="card position-relative rounded rounded-3">
+                        <a href="@Url.Action("Download", "Home", new { id = obj.ID })" class="text-decoration-none ">
+                            <div style="position: relative;" >
+                                <!-- Lazy loading for images -->
+                                <img src="@obj.ImgURL" class="card-img-top lazyload rounded rounded-3" alt="Anime Image">
+                                <div class="card-img-overlay rounded rounded-3 "></div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@obj.Name <sup class="text-success">@obj.Type</sup> @obj.Rating</h5>
+                                <p class="card-text"><small class="text-success">@obj.OName</small></p>
+                                <p class="card-text"><strong>Genres:</strong> <small class="text-primary">@obj.Genres</small></p>
+                                <p class="card-text overflow-hidden d-none" style="max-height: 100px;">@obj.Description</p>
+                            </div>
+                            <div class="position-absolute top-0 start-0 mt-3 ms-3 d-flex align-items-center">
+                                <div class="text-warning me-1" style="font-size: 1.5rem;">
+                                    <i class="bi bi-star-fill"></i>
+                                    <div class="text-white" style="font-size: 1rem;">
+                                        @obj.Score <!-- Assuming Score is a property from the model -->
+                                    </div><!-- Assuming you're using Bootstrap Icons -->
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center pt-5">
+        @if (ViewBag.Page > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("All", new { page = ViewBag.Page - 1, pageSize = ViewBag.PageSize, genre = ViewBag.Genre })">Previous</a>
+            </li>
+        }
+
+        @for (int i = ViewBag.Page - 5; i <= ViewBag.Page + 5 && i <= Math.Ceiling((double)ViewBag.TotalCount / ViewBag.PageSize); i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item @(i == ViewBag.Page ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("All", new { page = i, pageSize = ViewBag.PageSize, genre = ViewBag.Genre })">@i</a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.Page < Math.Ceiling((double)ViewBag.TotalCount / ViewBag.PageSize))
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("All", new { page = ViewBag.Page + 1, pageSize = ViewBag.PageSize, genre = ViewBag.Genre })">Next</a>
+            </li>
+        }
+    </ul>
+</nav>

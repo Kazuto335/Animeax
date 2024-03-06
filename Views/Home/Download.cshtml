@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "AnimeAx Downlod Page";
+}
+@model AAnime
+
+<div class="container mt-5 border shadow-lg">
+    <div class="row">
+        <div class="col-md-4 p-4 bg-dark">
+            <img src="@Model.ImgURL" class="w-100 rounded shadow-lg" alt="Image">
+        </div>
+        <div class="col-md-8 p-4">
+            <h2 class="mb-3">@Model.Name</h2>
+            <p class="text-muted mb-2">@Model.OName</p>
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <p class="mb-1"><strong>Genres:</strong></p>
+                    <p class="text-info">@Model.Genres</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="mb-1"><strong>Type:</strong></p>
+                    <p class="text-info">@Model.Type</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="mb-1"><strong>Aired:</strong></p>
+                    <p class="text-info">@Model.Aired</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="mb-1"><strong>Score:</strong></p>
+                    <p class="text-info">@Model.Score</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="mb-1"><strong>Rating:</strong></p>
+                    <p class="text-info">@Model.Rating</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="mb-1"><strong>Status:</strong></p>
+                    <p class="text-info">@Model.Status</p>
+                </div>
+            </div>
+            <hr>
+            <p>@Model.Description</p>
+        </div>
+    </div>
+</div>
+<div class="mt-4 border container">DOWNLOD LIKS</div>

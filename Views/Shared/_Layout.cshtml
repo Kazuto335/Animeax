@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Animeax.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body>
+<body class="">
     <header>
         <div class="text-center">
             <h1 class="display-4">AnimeAx</h1>
@@ -24,16 +25,14 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse" id="navbarColor01" style="">
+                <div class="navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item">
+                        <li class="nav-item d-none d-md-block d-lg-block px-5 mx-5"></li>
+                        <li class="nav-item ">
                             <a class="nav-link text-white d-block d-md-none"asp-controller="Home" asp-action="Index">Home</a>
                             <span class="visually-hidden">(current)</span>
                         </li>
-                        <li class="nav-item m-1">
+                        <li class="nav-item">
                             <a class="nav-link bg-white d-none d-md-block" asp-controller="Home" asp-action="Index">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="" height="25" fill="black" class="bi bi-house-fill" viewBox="0 0 16 16">
                                     <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z" />
@@ -43,10 +42,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Features</a>
+                            <a class="nav-link text-white" asp-controller="Ongoing" asp-action="Index">Ongoing</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Pricing</a>
+                            <a class="nav-link text-white" asp-controller="Home" asp-action="All">All Anime</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#">About</a>
@@ -67,16 +66,22 @@
                     <form class="d-flex">
                         <input class="form-control me-sm-2 text-primary" type="search" placeholder="Search">
                         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+
                     </form>
+                    <div class="nav-item d-none d-md-block d-lg-block px-4 mx-4"></div>
                 </div>
             </div>
         </nav>
 
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="row">
+        <div class="col-md-1 "></div>
+        <div class="container col-md-10">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <div class="col-md-1"></div>
     </div>
 
     <footer class="border-top footer text-muted">

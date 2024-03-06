@@ -1,0 +1,38 @@
+﻿@{
+    //Layout = null;
+}
+
+@model AnimeDLink
+
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">ADD ANIME</h2>
+            <hr />
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Name" class="p-0"></label>
+            <input asp-for="Name" class="form-control" placeholder="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="AAnimeID" class="p-0"></label>
+            <input asp-for="AAnimeID"  class="form-control" placeholder="Name" />
+            <span asp-validation-for="AAnimeID" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="DLink" class="p-0"></label>
+            <input asp-for="DLink" class="form-control" placeholder="Name" />
+            <span asp-validation-for="DLink" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">ADD</button>
+        <a asp-controller="Dashboard" asp-action="AddDownlodLink"></a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

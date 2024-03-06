@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "ADMIN ONLY";
+    //Layout = null;
+}
+
+@model List<AAnime>
+
+<div class="row">
+    <div class="col-md-8 mb-4 mt-4">
+        <form asp-controller="Dashboard" asp-action="Index" method="get" class="form-inline">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control border-1 bg-dark" placeholder="Search...">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4 mb-4 mt-4">
+        <a class="btn btn-outline-light" asp-controller="Dashboard" asp-action="AddAnime">
+            Add Anime
+        </a>
+    </div>
+
+    @foreach (var obj in Model)
+    {
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@obj.Name</h5>
+                    <p class="card-text">ID: @obj.ID</p>
+                    <a class="bi bi-pencil-square m-1 text-decoration-none" asp-controller="Dashboard" asp-action="Edit" asp-route-id="@obj.ID">Edit</a>
+                    <a class="bi bi-trash m-1 text-decoration-none" asp-controller="Dashboard" asp-action="Delete" asp-route-id="@obj.ID">Delete</a>
+                    <a class="bi bi-plus-square m-1 text-decoration-none" asp-controller="Dashboard" asp-action="AddDownlodLink" asp-route-id="@obj.ID">Add Downlod Link</a>
+                </div>
+                
+            </div>
+        </div>
+    }
+</div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center pt-5">
+        @if (ViewBag.Page > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.Page - 1, pageSize = ViewBag.PageSize })">Previous</a>
+            </li>
+        }
+
+        @for (int i = ViewBag.Page - 5; i <= ViewBag.Page + 5 && i <= Math.Ceiling((double)ViewBag.TotalCount / ViewBag.PageSize); i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item @(i == ViewBag.Page ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.Page < Math.Ceiling((double)ViewBag.TotalCount / ViewBag.PageSize))
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.Page + 1, pageSize = ViewBag.PageSize })">Next</a>
+            </li>
+        }
+    </ul>
+</nav>
